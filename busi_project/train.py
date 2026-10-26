@@ -58,7 +58,6 @@ def main():
     callbacks = [
         ModelCheckpoint(config.checkpoint_path, monitor="val_accuracy", save_best_only=True),
         CSVLogger(config.work_dir / "training.csv"),
-        EarlyStopping(monitor="val_accuracy", patience=5, restore_best_weights=True),
     ]
     model.fit(train_gen, epochs=config.epochs, validation_data=validation_gen,
               class_weight=weights, callbacks=callbacks)

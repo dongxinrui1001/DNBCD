@@ -20,7 +20,7 @@ def collect_images(dataset_dir: Path) -> List[Tuple[Path, str]]:
         if not class_dir.exists():
             raise FileNotFoundError(f"Missing class directory: {class_dir}")
         for path in sorted(class_dir.iterdir()):
-            if path.suffix.lower() in IMAGE_EXTENSIONS and "_mask" not in path.stem.lower():
+            if path.suffix.lower() in IMAGE_EXTENSIONS:
                 items.append((path, class_name))
     if not items:
         raise RuntimeError(f"No images found under {dataset_dir}")
