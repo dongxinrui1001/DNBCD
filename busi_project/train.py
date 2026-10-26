@@ -20,13 +20,18 @@ def main():
     parser.add_argument("--data", type=Path, default=None)
     parser.add_argument("--model", default="dnbcd",
                         choices=["dnbcd", "densenet", "mobilenet", "resnet50", "vgg19"])
-    parser.add_argument("--epochs", type=int, default=20)
-    parser.add_argument("--batch-size", type=int, default=32)
+    parser.add_argument("--epochs", type=int, default=None)
+    parser.add_argument("--batch-size", type=int, default=None)
     args = parser.parse_args()
-    config = Config(model_name=args.model, epochs=args.epochs, batch_size=args.batch_size)
+    config = Config(model_name=args.model)
+    if args.epochs is not None:
+        config.epochs = args.epochs
+    if args.batch_size is not None:
+        config.batch_size = args.batch_size
     if args.data:
         config.dataset_dir = args.data
     config.work_dir.mkdir(parents=True, exist_ok=True)
+
     logging.basicConfig(
         level=logging.INFO,
         format="%(asctime)s | %(levelname)s | %(message)s",

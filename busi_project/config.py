@@ -8,8 +8,8 @@ class Config:
     work_dir: Path = Path("runs/busi")
     model_name: str = "dnbcd"
     image_size: int = 128
-    batch_size: int = 32
-    epochs: int = 20
+    batch_size: int = 8
+    epochs: int = 1
     seed: int = 42
     test_size: float = 0.20
     validation_size: float = 0.10
